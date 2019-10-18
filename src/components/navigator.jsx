@@ -1,30 +1,14 @@
-import React, {Component} from 'react';
-import NavBar from 'react-bootstrap/NavBar';
-import Nav from 'react-bootstrap/Nav';
-import {Container} from 'react-bootstrap';
-import './navigator.css';
+import React from 'react';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-class Navigator extends Component {
-    render(){
-        return (
-            <NavBar bg='transparent' expand='xl'>
-                <Container>
-                <NavBar.Brand href="/home">Home Page</NavBar.Brand>
-                <Nav className='mr-auto'>
-                    <Nav.Link href='/projects'>Projects</Nav.Link>
-                    <Nav.Link href='/about'>About me</Nav.Link>
-                </Nav>
-                <Nav>
-                <div className='top-search'>
-                    <a className='search-click'> Search
-                        <i className='fa fa-search'>
-                        </i>
-                    </a>
-                </div>
-                </Nav>
-                </Container>
-            </NavBar>
-        )
-    }
-}
-export default Navigator
+import HomeScreen from '../pages/homeScreen'
+import ProjectScreen from '../pages/projects'
+
+
+const AppNavigator = createStackNavigator({
+    Home: HomeScreen,
+    Project: ProjectScreen
+})
+
+export default createAppContainer(AppNavigator);

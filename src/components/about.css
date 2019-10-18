@@ -1,0 +1,22 @@
+.full-aboutme {
+    padding: 30px 30px;
+    margin-right: auto;
+    margin-left: auto;
+    background: white;
+}
+
+.big-aboutme {
+    color: rgba(0, 0,0 ,0.8);
+    text-align: center
+}
+.title {
+    margin-bottom: 30px; 
+    font-size: 80px; 
+    font-weight: 100;
+}
+.paragraph {
+    padding: 20px;
+    text-align: left;
+    font-size: 20px;
+    font-weight: 400; 
+}

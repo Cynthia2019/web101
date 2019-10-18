@@ -1,28 +1,23 @@
 import React from 'react';
 import './App.css';
-import Navigator from './components/navigator'
-import HomePage from './components/home';
-import Intro from './components/intro';
-
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import HomeScreen from './pages/homeScreen'
+import ProjectScreen from './pages/projects'
+import 'antd/dist/antd.css'
 function App() {
   return (
-    <div className='all'>
-      <div className="main-background">
-        <header>
-          <Navigator />
-          <HomePage />
-        </header>
-      </div>
-        <section>
-          <Intro />
-        </section>
-      </div>
+    <Router>
+      <Switch>
+        <Route exact path='/'>
+          <HomeScreen />
+        </Route>
+        <Route path='/projects'>
+          <ProjectScreen />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
 export default App;
 
-
-/*       
-<Navigator />
-<HomePage></HomePage>*/
