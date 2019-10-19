@@ -1,13 +1,37 @@
 import React, {Component} from 'react';
-import NavBar from 'react-bootstrap/NavBar';
-import Nav from 'react-bootstrap/Nav';
+import {Layout, Menu} from 'antd'
 import {Link} from 'react-router-dom'
-import {Container} from 'react-bootstrap';
+import {Container, Nav} from 'react-bootstrap';
 import './navbar.css';
 
+/* 
+a nav should have: 
+nav {
+    displayName: photoshop, 
+    className: PS,
+    link: / or none,
+}
+*/
 class Navbar extends Component {
     render(){
+        const {navs} = this.props
         return (
+                <Menu mode='horizontal' theme='light' style={{backgroundColor:'transparent', color:'white', }}>
+                {navs.map((nav, index)=>{
+                    return(
+                        <Menu.Item key={`option-${index}`} className={nav.className}>
+                            <Link to={nav.link} style={{color:'white'}}>{nav.displayName}</Link>
+                        </Menu.Item>
+                    )
+                })}
+                </Menu>
+        )
+    }
+}
+export default Navbar
+
+/* 
+
             <NavBar bg='transparent' expand='xl'>
                 <Container>
                 <NavBar.Brand href="/">Home Page</NavBar.Brand>
@@ -25,7 +49,4 @@ class Navbar extends Component {
                 </Nav>
                 </Container>
             </NavBar>
-        )
-    }
-}
-export default Navbar
+*/

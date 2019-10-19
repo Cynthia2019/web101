@@ -6,6 +6,7 @@ import './home.css'
 export default class HomePage extends Component{
     render(){
         return(
+            <div className='main-background'>
             <Container>
                 <div className='avatar'>
                     <Image src='https://via.placeholder.com/200' alt='avatar' roundedCircle></Image>
@@ -16,6 +17,7 @@ export default class HomePage extends Component{
                     <p className='extended-details'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A alias adipisci odio officiis odit voluptate qui dignissimos quidem, dolore sed ipsam magni vel quam illum ea. Dolore officia nihil maiores.</p>
                 </div>
             </Container>
+            </div>
         )
     }
 }

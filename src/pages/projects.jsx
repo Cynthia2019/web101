@@ -1,20 +1,50 @@
 import React, {Component} from 'react'; 
+import {Layout, Card} from 'antd'
+import Navbar from '../components/navbar'
 
-const { Layout, Menu, Breadcrumb } = antd;
+const { Header, Content} = Layout;
+const { Meta } = Card;
 
-const { Header, Content, Footer } = Layout;
-
+const navs=[
+    {
+        displayName: 'Home', 
+        className: 'home',
+        link: '/'
+    },
+    {
+        displayName: 'PhotoShop',
+        className: 'PS',
+        link: '#'
+    },
+    {
+        displayName: 'Machine Learning',
+        className: 'ML',
+        link: '#'
+    },
+    {
+        displayName: 'Web',
+        className: 'web',
+        link: '#'
+    }, 
+    {
+        displayName: 'Data Visualization',
+        className: 'Data',
+        link: '#'
+    }
+]
 export default class ProjectScreen extends Component{
     render(){
         return(
             <Layout>
-                <Header className='header'>
-                    <Menu className='options'>
-                        <Menu.Item key='option-1' className='PS'>PhotoShop</Menu.Item>
-                        <Menu.Item key='option-2' className='ML'>Machine Learning</Menu.Item>
-                        <Menu.Item key='option-3' className='Web'>Web</Menu.Item>
-                    </Menu>
+                <Header>
+                    <Navbar navs={navs}/>
                 </Header>
+                <Content>
+                    <Card hoverable style={{width: 240, margin:`20px 40px`}}
+                    cover={<img src='https://via.placeholder.com/200' alt='example'/>}>
+                        <Meta title='example' description='blahblahblah' />
+                    </Card>
+                </Content>
             </Layout>
         )
     }
