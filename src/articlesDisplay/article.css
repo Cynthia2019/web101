@@ -1,0 +1,47 @@
+
+.main-content{
+    padding: 60px 60px;
+    background-color: #FAFAFA;
+    border: 5px solid black;
+}
+
+.article-container {
+    background-color: white;
+    padding: 30px 40px !important;
+    box-shadow: 5px 10px 30px grey;
+    color: black;
+    
+}
+.side-bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-width: 200px;
+    height: fit-content;
+    min-height: 800px;
+}
+.card {
+    padding: 20px; 
+    box-shadow: 5px 10px 30px grey;
+    background-color: white;
+    height: fit-content; 
+    color: black; 
+}
+
+.avatar-small {
+    height: 100px;
+    width: 100px !important;
+    border: 1px solid black;
+    border-radius: 100px;
+    background: url('https://via.placeholder.com/100');
+}
+.info {
+    margin: 10px;
+}
+.quote {
+    margin-top: 20px;
+}
+.latest-post {
+    font-size: 25px;
+    font-weight: 200 ; 
+}
