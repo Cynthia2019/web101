@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {Layout, Menu} from 'antd'
+import {Menu} from 'antd'
 import {Link} from 'react-router-dom'
-import {Container, Nav} from 'react-bootstrap';
 import './navbar.css';
 
 /* 
@@ -20,7 +19,7 @@ class Navbar extends Component {
                 {navs.map((nav, index)=>{
                     return(
                         <Menu.Item key={`option-${index}`} className={nav.className}>
-                            <Link to={nav.link} style={{color:'white'}}>{nav.displayName}</Link>
+                            <Link to={nav.link} style={{color:'#7a716f', fontSize: 20}}>{nav.displayName}</Link>
                         </Menu.Item>
                     )
                 })}
@@ -29,24 +28,3 @@ class Navbar extends Component {
     }
 }
 export default Navbar
-
-/* 
-
-            <NavBar bg='transparent' expand='xl'>
-                <Container>
-                <NavBar.Brand href="/">Home Page</NavBar.Brand>
-                <Nav className='mr-auto'>
-                    <Nav.Link><Link  to='/projects'>Projects</Link></Nav.Link>
-                    <Nav.Link to='/about'>About me</Nav.Link>
-                </Nav>
-                <Nav>
-                <div className='top-search'>
-                    <a className='search-click'> Search
-                        <i className='fa fa-search'>
-                        </i>
-                    </a>
-                </div>
-                </Nav>
-                </Container>
-            </NavBar>
-*/

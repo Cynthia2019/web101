@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { Input, Row, Col, Button } from 'antd'; 
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { Input, Row, Col, Button, Upload, Icon } from 'antd'; 
+import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import MarkdownEditor from './editor'
 import axios from 'axios'
 import './write.css'
-import ArticleScreen from '../pages/articleScreen';
+import * as qiniu from 'qiniu-js'
 
+const config = {
+    useCdnDomain: false,
+    region: 'qiniu.region.na'
+}
 const { TextArea } = Input; 
  
 export default class Window extends Component{
@@ -15,13 +19,16 @@ export default class Window extends Component{
             redirect: false, 
             id: 0,
             content: '',
-            title: ''
+            title: '',
+            token: null, 
+            imgUrl: null,
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleTitle = this.handleTitle.bind(this)
         this.renderRedirect = this.renderRedirect.bind(this)
     }
+/// listen the article content
     handleChange(e){
         this.setState({
             content: e.target.value
@@ -32,7 +39,6 @@ export default class Window extends Component{
             title: e.target.value
         })
     }
-
     handleSubmit(){
         if(this.state.title || this.state.content){
             this.putArticletoDB()
@@ -41,15 +47,32 @@ export default class Window extends Component{
         } else {
             alert('Title and Content cannot be empty.')
         }
-
     }
+/// get upload token
+    getToken=()=>{
+        fetch('http://localhost:4000/qiniu/qiniuToken')
+        .then(res => res.text())
+        .then(data => {this.setState({token: data})})
+    }
+
+    componentDidMount(){
+        this.getToken()
+    }
+    getURL=()=>{
+        const domain = 'http://pzyh6r51g.bkt.gdipper.com'
+        let url = domain + '/' + this.state.key
+        this.setState({imgUrl: url})
+    }
+///put article to database 
     putArticletoDB=()=>{
         axios.post('http://localhost:4000/api/journals', {
             id:  Date.now().toLocaleString(),
             title: this.state.title, 
             content: this.state.content, 
+            imgUrl: this.state.imgUrl
         }); 
     }
+// set redirect
     setRedirect=()=>{
         this.setState({
             redirect: true, 
@@ -60,12 +83,8 @@ export default class Window extends Component{
         return (
             <Switch>
                 <Redirect from='/markdown' to='/articles'/>
-                <Router path='/articles' render={(props)=><ArticleScreen {...props}/>}></Router>
             </Switch>
-        )
-        }
-    }
-
+        )}}
     render(){
         return(
             <div>
@@ -77,6 +96,17 @@ export default class Window extends Component{
                             <Row  type='flex' justify='space-between' align='middle'>
                                 <span className='title editor-title'>Editor</span>
                                 {this.renderRedirect()}
+                                <Upload name='file' accept='.png, .jpg, .jepg,' 
+                                action='https://upload-na0.qiniup.com' showUploadList={true}
+                                beforeUpload={file => {
+                                    this.setState({key: file.name})
+                                }}
+                                multiple={true} data={{token: this.state.token, config, key: this.state.key}}
+                                onChange={(info)=>(info.file.status==='done')?this.getURL():<></>}>
+                                    <Button>
+                                        <Icon type="upload" /> Click to Upload
+                                    </Button>
+                                </Upload>
                                 <Button type='primary' className='btn btn-submit' onClick={this.handleSubmit}>Submit</Button>
                             </Row>
                             <div className='article-title'>

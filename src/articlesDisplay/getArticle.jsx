@@ -36,7 +36,6 @@ export default class GetArticle extends Component{
         if(this.state.articles){
             clearInterval(this.state.intervalIsSet);
         }
-        console.log(this.state.articles)
         return(
             <>
             <Row type="flex" justify='space-between' align='bottom'>

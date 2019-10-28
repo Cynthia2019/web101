@@ -1,35 +1,35 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link, useParams, useLocation } from 'react-router-dom';
+import 'antd/dist/antd.css'
+import './index.css'
+
+import { BrowserRouter as Router, Switch, Route, withRouter  } from 'react-router-dom';
 import HomeScreen from './pages/homeScreen'
 import ProjectScreen from './pages/projects'
 import Markdown from '../src/pages/markdown'
 import ArticleScreen from '../src/pages/articleScreen'
-import 'antd/dist/antd.css'
 import SingleArticle from './articlesDisplay/article';
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path='/'>
-          <HomeScreen />
-        </Route>
-        <Route path='/projects'>
-          <ProjectScreen />
-        </Route>
-        <Route exact path='/articles'>
-          <ArticleScreen />
-        </Route>
-        <Route exact path='/article/:articleId' component={SingleArticle}>
-        </Route>
-        <Route>
-          <Markdown exact path='/markdown'/>
-        </Route>
-      </Switch>
-    </Router>
-  );
-}
+  <Route render={({ location })=> (
+    <TransitionGroup component={null} className='transition-group'>
+      <CSSTransition key={location.key} timeout={{enter: 300, exit: 300}} classNames='fade'>
+        <section className='route-section'>
+        <Switch location={location}>
+          <Route exact path='/' component={HomeScreen} />
+          <Route path='/projects' component={ProjectScreen} />
+          <Route exact path='/articles' component={ArticleScreen} />
+          <Route exact path='/article/:articleId' component={SingleArticle} />
+          <Route exact path='/markdown' component={Markdown} />
+        </Switch>
+        </section>
+        </CSSTransition>
+    </TransitionGroup>
+  )}
+    />)};
 
 
-export default App;
+
+export default withRouter(App);
 

@@ -1,5 +1,4 @@
 .container {
-    color: white;
     text-align: center;
     padding: 5px 15px; 
 }
@@ -7,6 +6,9 @@
     margin-top: 40px;
     display: flex;
     justify-content: center;
+}
+.details, .name, .main-details {
+    color: #FFF;
 }
 .rounded-circle {
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.2), 0 2px 10px 0 rgba(0,0,0,.12);
