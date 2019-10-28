@@ -1,0 +1,30 @@
+.App {
+  text-align: center;
+}
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in
+}
+
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-out
+}
+
+.transition-group {
+  position: relative;
+}
+
+.route-section {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
