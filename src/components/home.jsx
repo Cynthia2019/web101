@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Container} from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'
+import Img from '../images/foxes.jpeg'
 import './home.css'
 
 export default class HomePage extends Component{
@@ -10,7 +11,7 @@ export default class HomePage extends Component{
             <div className='main-background'>
             <Container>
                 <div className='avatar'>
-                    <Image src='https://via.placeholder.com/200' alt='avatar' roundedCircle></Image>
+                    <img src={Img} alt='avatar' style={{width:150, height:150, borderRadius:'100%'}}/>
                 </div>
                 <div className='details'>
                     <h1 className='name'>Yujia Xie</h1>

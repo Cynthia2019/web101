@@ -1,33 +1,8 @@
 import React, {Component} from 'react';
-import Navbar from '../components/navbar'
+import HeaderFixed from '../components/header'
 import HomePage from '../components/home';
 import Intro from '../components/intro';
 import AboutMe from '../components/about';
-import {Layout} from 'antd';
-const {Header} = Layout
-
-const navs = [
-  {
-    displayName: 'Home Page',
-    className: 'home',
-    link: '/'
-  },
-  {
-    displayName: 'Projects', 
-    className: 'projects',
-    link: '/projects'
-  },
-  {
-    displayName: 'Articles',
-    className:'articles',
-    link: '/articles'
-  },
-  {
-    displayName: 'Markdown',
-    className:'markdown',
-    link: '/markdown'
-  }
-]
 
 export default class HomeScreen extends Component {
   constructor(props){
@@ -64,9 +39,7 @@ export default class HomeScreen extends Component {
       console.log(data)
         return(
             <div className='all'>
-              <Header>
-                <Navbar navs={navs}/>
-              </Header>
+              <HeaderFixed />
               <HomePage data={data}/>
                 <Intro />
                 <AboutMe />

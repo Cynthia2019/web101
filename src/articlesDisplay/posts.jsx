@@ -1,6 +1,7 @@
 import React, { Component } from 'react'; 
 import { Row } from 'antd'; 
 import axios from 'axios';
+import './article.css'
 
 export default class LatestPosts extends Component{
     constructor(){
@@ -24,11 +25,11 @@ export default class LatestPosts extends Component{
 
     render(){
         if(this.state.articles){
-            console.log(this.state.articles)
         return(
             <Row type="flex" justify='space-between' align='bottom'>
-                <h5 >{this.state.articles.map((article, index)=>{
-                    return <li key={index+1} style={this.props.style}>{article.title}</li>
+                <h5 style={{fontWeight: 300, fontSize: '20px', width:'100%'}}>{this.state.articles.map((article, index)=>{
+                    if(index<6){
+                    return <ul style={this.props.style} key={index+1}><a href={`/article/${article._id}`}>{article.title}</a></ul>}
                 })}</h5>
             </Row>
         )

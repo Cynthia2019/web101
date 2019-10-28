@@ -8,3 +8,10 @@
 .ant-menu-item, .ant-menu-item-selected {
     border-bottom: none !important;
 }
+.ant-menu-item > a {
+    color: black;
+    transition: 0.3s ease-in-out
+}
+.ant-menu-item > a:hover {
+    color: '#8a8caf' !important
+}
